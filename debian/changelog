@@ -1,0 +1,5 @@
+lz4json (0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #917282)
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 25 Dec 2018 03:31:47 +0100
