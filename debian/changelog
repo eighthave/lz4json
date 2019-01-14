@@ -1,3 +1,10 @@
+lz4json (1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop all patches (upstreamed).
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 14 Jan 2019 12:27:57 +0100
+
 lz4json (0-1) unstable; urgency=medium
 
   * Initial release (Closes: #917282)
