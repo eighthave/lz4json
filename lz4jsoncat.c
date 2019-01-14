@@ -17,8 +17,9 @@
  */
 
 /* File format reference:
-   http://mxr.mozilla.org/mozilla-central/source/toolkit/components/workerlz4/lz4.js 
+   https://dxr.mozilla.org/mozilla-central/source/toolkit/components/lz4/lz4.js
  */
+#include <errno.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/fcntl.h>
@@ -49,9 +50,7 @@ int main(int ac, char **av)
 			exit(1);
 		}
 
-		unsigned ps = sysconf(_SC_PAGE_SIZE);
-		char *map = mmap(NULL, (st.st_size + ps - 1) & ~(ps - 1), PROT_READ,
-				 MAP_SHARED, fd, 0);
+		char *map = mmap(NULL, st.st_size, PROT_READ, MAP_SHARED, fd, 0);
 		if (map == (char *)-1) {
 			perror(*av);
 			exit(1);
@@ -70,12 +69,15 @@ int main(int ac, char **av)
 			fprintf(stderr, "%s: decompression error\n", *av);
 			exit(1);
 		}
-		if (write(1, out, outsz) < outsz) {
+		ssize_t decsz = write(1, out, outsz);
+		if (decsz < 0 || decsz != outsz) {
+			if (decsz >= 0)
+				errno = EIO;
 			perror("write");
 			exit(1);
 		}
 		free(out);
-		munmap(map, (st.st_size + ps - 1) & ~(ps - 1));
+		munmap(map, st.st_size);
 		close(fd);
 
 	}
