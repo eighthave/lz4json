@@ -1,3 +1,10 @@
+lz4json (2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Pass dpkg's buildflags.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 10 Feb 2019 23:45:38 +0100
+
 lz4json (1-1) unstable; urgency=medium
 
   * New upstream release.
