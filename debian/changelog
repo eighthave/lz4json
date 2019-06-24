@@ -1,3 +1,12 @@
+lz4json (2-2) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Fix FTCBFS: (Closes: #931020)
+    + Let dh_auto_build pass cross tools to make.
+    + cross.patch: Make pkg-config substitutable.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 24 Jun 2019 23:04:07 +0200
+
 lz4json (2-1) unstable; urgency=medium
 
   * New upstream release.
